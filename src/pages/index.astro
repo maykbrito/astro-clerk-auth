@@ -1,16 +1,37 @@
 ---
-import '@/styles/globals.css'
+import Layout from '@/layouts/Layout.astro'
+
+import SignedIn from '@/components/auth/SignedIn.astro'
+import SignedOut from '@/components/auth/SignedOut.astro'
+import SignInButton from '@/components/auth/SignInButton.astro'
+
+import { buttonVariants } from "@/components/ui/button"
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+	<article class="grid lg:grid-cols-2">
+		<div class="px-8 py-20 md:px-20 lg:py-48">
+			<h1 class="text-5xl font-semibold text-black md:text-6xl gradient">
+				Auth starts here.
+			</h1>
+			<p class="mt-2 text-lg">
+				A simple and powerful Astro template featuring authentication and
+				user management powered by Clerk.
+			</p>
+			<div class="flex gap-2 mt-8">
+				<SignedOut>
+					<SignInButton />
+				</SignedOut>
+				<SignedIn>
+
+					<a
+						href="/dashboard"
+						class={buttonVariants({ variant: "outline" })}
+					>
+						View Demo
+					</a>
+				</SignedIn>
+			</div>
+		</div>
+	</article>
+</Layout>

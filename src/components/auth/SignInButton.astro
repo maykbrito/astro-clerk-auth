@@ -1,0 +1,25 @@
+---
+import { Button } from "../ui/button";
+---
+
+<Button id="auth-sign-in-button">
+  Sign In
+</Button>
+
+<script>
+  import { auth } from '../../lib/authStore'
+
+  auth.subscribe((clerk) => {
+    if (clerk !== null && clerk.isReady()) {
+      const signInButton = document.getElementById('auth-sign-in-button')
+      if (signInButton) {
+        signInButton.addEventListener('click', () => {
+          clerk.openSignIn({
+            afterSignInUrl: '/dashboard',
+            afterSignUpUrl: '/dashboard',
+          })
+        })
+      }
+    }
+  })
+</script>
