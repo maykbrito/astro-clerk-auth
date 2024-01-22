@@ -14,6 +14,8 @@
 
 - Vanilla JS
 
+- Nanostores
+
 
 ## Steps to reproduce from scratch
 
@@ -57,7 +59,7 @@ export async function onRequest ({ request, redirect }, next) {
 
 - [ ] use nano stores `pnpm add nanostores`
 
-- [ ] configure authStore and the clerk initialization
+- [ ] configure authStore, the Clerk initialization, and .env with Clerk keys
 
 ```ts
 // @/lib/authStore.ts
