@@ -1,9 +1,10 @@
 ---
 import { Button } from "../ui/button";
+const props = Astro.props
 ---
 
-<Button id="auth-sign-in-button">
-  Sign In
+<Button data-auth-sign-in-button {...props}>
+  <slot />
 </Button>
 
 <script>
@@ -11,14 +12,14 @@ import { Button } from "../ui/button";
 
   auth.subscribe((clerk) => {
     if (clerk !== null && clerk.isReady()) {
-      const signInButton = document.getElementById('auth-sign-in-button')
+      const signInButton = document.querySelectorAll('[data-auth-sign-in-button]')
       if (signInButton) {
-        signInButton.addEventListener('click', () => {
+        signInButton.forEach(btn => btn.addEventListener('click', () => {
           clerk.openSignIn({
             afterSignInUrl: '/dashboard',
             afterSignUpUrl: '/dashboard',
           })
-        })
+        }))
       }
     }
   })

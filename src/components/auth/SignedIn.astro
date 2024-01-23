@@ -2,7 +2,7 @@
 const { classes } = Astro.props
 ---
 
-<div class=`auth-signed-in hidden ${classes ?? ''}`>
+<div data-auth-signed-in class=`hidden ${classes ?? ''}`>
   <slot />
 </div>
 
@@ -11,7 +11,7 @@ const { classes } = Astro.props
 
   auth.subscribe((clerk) => {
     if (clerk !== null && clerk.isReady()) {
-      const signedIn = document.querySelectorAll('.auth-signed-in')!
+      const signedIn = document.querySelectorAll('[data-auth-signed-in]')!
       if (!!clerk.user) {
         signedIn.forEach((el) => {
           el.classList.remove('hidden')
